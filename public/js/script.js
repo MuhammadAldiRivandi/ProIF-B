@@ -23,31 +23,47 @@ exchageIcon.addEventListener("click", () => {
 
 fromText.addEventListener("keyup", () => {
     if (!fromText.value) {
-        toText.value = "nothing";
+        toText.value = "";
     }
 });
+
+console.log(fromText);
+
+const translateHook = async () => {
+    const fromLang = selectTag[0].value;
+    const toLang = selectTag[1].value;
+    const textTranslate = fromText.value;
+
+    try {
+        const response = await axios.post('/translate', {
+            q: textTranslate,
+            source_language: fromLang,
+            target_language: toLang
+        });
+        console.log(response);
+        toText.value = response.data.translated_text;
+    } catch (error) {
+        console.error('Error translating text:', error.response ? error.response.data : error.message);
+    }
+}
 
 
 
 translateBtn.addEventListener("click", async () => {
     const fromLang = selectTag[0].value;
     const toLang = selectTag[1].value;
-    const textToTranslate = fromText.value;
+    const textTranslate = fromText.value;
 
-    if (textToTranslate) {
-        try {
-            const response = await axios.post('/translate', {
-                q: textToTranslate,
-                source_language: fromLang,
-                target_language: toLang,
-                format: textToTranslate
-            });
-
-            const translatedText = response.data.translated_text;
-            toText.value = translatedText;
-        } catch (error) {
-            console.error('Error translating text:', error.response ? error.response.data : error.message);
-        }
+    try {
+        const response = await axios.post('/translate', {
+            q: textTranslate,
+            source_language: fromLang,
+            target_language: toLang
+        });
+        toText.value = response.data.translated_text;
+    } catch (error) {
+        console.error('Error translating text:', error.response ? error.response.data : error.message);
     }
+
 });
 
