@@ -43,27 +43,25 @@ const translateHook = async () => {
         console.log(response);
         toText.value = response.data.translated_text;
     } catch (error) {
-        console.error('Error translating text:', error.response ? error.response.data : error.message);
+        throw error;
     }
 }
-
-
 
 translateBtn.addEventListener("click", async () => {
     const fromLang = selectTag[0].value;
     const toLang = selectTag[1].value;
+    // console.log(fromLang, toLang);
     const textTranslate = fromText.value;
-
+    // console.log(textTranslate);
     try {
         const response = await axios.post('/translate', {
-            q: textTranslate,
+            q: textTranslate, // querry string
             source_language: fromLang,
             target_language: toLang
         });
         toText.value = response.data.translated_text;
     } catch (error) {
-        console.error('Error translating text:', error.response ? error.response.data : error.message);
+        throw error; s
     }
-
 });
 

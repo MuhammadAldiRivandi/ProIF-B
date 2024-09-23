@@ -30,9 +30,8 @@ app.post('/translate', async (req, res) => {
     res.json({ translated_text: response.data.data.translations[0].translatedText }); // data yang dikembalikan dari api ada dua kali ("translatedText": "halo", "detectedSourceLanguage": "id")
 
   } catch (error) {
-    console.error('Error translating text:', {
+    console.error('translating text error:', {
       message: error.message,
-      response: error.response ? error.response.data : null,
       config: error.config
     });
     res.status(500).send('Translation error');
@@ -40,6 +39,6 @@ app.post('/translate', async (req, res) => {
 });
 
 
-app.listen(8080, () => {
-  console.log('Server running on port 8080');
+app.listen(8081, () => {
+  console.log('Server running on port 8081');
 });
