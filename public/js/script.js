@@ -1,24 +1,24 @@
-const fromText = document.querySelector(".from-text"),
-    toText = document.querySelector(".to-text"),
-    exchageIcon = document.querySelector(".exchange"),
-    selectTag = document.querySelectorAll("select");
-translateBtn = document.querySelector("button"),
+const fromText = document.querySelector(".from-text");
+const toText = document.querySelector(".to-text");
+const exchageIcon = document.querySelector(".exchange");
+const selectLang = document.querySelectorAll("select");
+const translateBtn = document.querySelector("button");
 
-    selectTag.forEach((tag, id) => {
+selectLang.forEach((tag, id) => {
         for (let country_code in countries) {
-            let selected = id == 0 ? country_code == "id-ID" ? "selected" : "" : country_code == "en-GB" ? "selected" : "";
+            let selected = id == 0 ? country_code == "id" ? "selected" : "" : country_code == "en" ? "selected" : "";
             let option = `<option ${selected} value="${country_code}">${countries[country_code]}</option>`;
             tag.insertAdjacentHTML("beforeend", option);
         }
     });
 
 exchageIcon.addEventListener("click", () => {
-    let tempText = fromText.value,
-        tempLang = selectTag[0].value;
+    let tempText = fromText.value;
+    let tempLang = selectLang[0].value;
     fromText.value = toText.value;
     toText.value = tempText;
-    selectTag[0].value = selectTag[1].value;
-    selectTag[1].value = tempLang;
+    selectLang[0].value = selectLang[1].value;
+    selectLang[1].value = tempLang;
 });
 
 fromText.addEventListener("keyup", () => {
@@ -30,8 +30,8 @@ fromText.addEventListener("keyup", () => {
 console.log(fromText);
 
 const translateHook = async () => {
-    const fromLang = selectTag[0].value;
-    const toLang = selectTag[1].value;
+    const fromLang = selectLang[0].value;
+    const toLang = selectLang[1].value;
     const textTranslate = fromText.value;
 
     try {
@@ -48,8 +48,8 @@ const translateHook = async () => {
 }
 
 translateBtn.addEventListener("click", async () => {
-    const fromLang = selectTag[0].value;
-    const toLang = selectTag[1].value;
+    const fromLang = selectLang[0].value;
+    const toLang = selectLang[1].value;
     // console.log(fromLang, toLang);
     const textTranslate = fromText.value;
     // console.log(textTranslate);
