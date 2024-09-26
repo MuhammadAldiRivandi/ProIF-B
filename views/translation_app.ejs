@@ -18,12 +18,12 @@
         </li>
         <li class="exchange"><i class="fas fa-exchange-alt"></i></li>
         <li class="row to">
-          <select></select>
+          <select onchange="translateHook()"></select>
         </li>
       </ul>
       <div class="text-input">
-        <textarea spellcheck="false" onchange="translateHook()" class="from-text" placeholder="Enter text"></textarea>
-        <textarea spellcheck="false" readonly disabled class="to-text" placeholder="Translation"></textarea>
+        <textarea spellcheck="false" oninput="translateHook()" onchange="translateHook()" class="from-text" placeholder="Enter text"></textarea>
+        <textarea id="toText" spellcheck="false" readonly disabled class="to-text" placeholder="Translation"></textarea>
       </div>
     </div>
     <button>Translate Text</button>

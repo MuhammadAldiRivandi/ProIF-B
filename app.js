@@ -28,12 +28,8 @@ app.post('/translate', async (req, res) => {
     });
     // mengirim respon hasil terjemahan
     res.json({ translated_text: response.data.data.translations[0].translatedText }); // data yang dikembalikan dari api ada dua kali ("translatedText": "halo", "detectedSourceLanguage": "id")
-
+    
   } catch (error) {
-    console.error('translating text error:', {
-      message: error.message,
-      config: error.config
-    });
     res.status(500).send('Translation error');
   }
 });
