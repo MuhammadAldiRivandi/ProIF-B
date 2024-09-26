@@ -13,7 +13,7 @@ body{
   justify-content: center;
   padding: 0 10px;
   min-height: 100vh;
-  background: #5372F0;
+  background: rgb(0,166,226);
 }
 
 .container{
@@ -112,18 +112,6 @@ body{
   transform: scale(0.9);
 }
 
-.container button{
-  width: 100%;
-  padding: 14px;
-  outline: none;
-  border: none;
-  color: #fff;
-  cursor: pointer;
-  margin-top: 20px;
-  font-size: 17px;
-  border-radius: 5px;
-  background: #5372F0;
-}
 
 @media (max-width: 660px){
   .container{
@@ -141,11 +129,6 @@ body{
 
   .text-input textarea{
     height: 200px;
-  }
-
-  .container button{
-    padding: 13px;
-    font-size: 16px;
   }
 
   .controls .row select{

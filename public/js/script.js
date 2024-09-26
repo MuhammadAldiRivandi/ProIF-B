@@ -2,15 +2,14 @@ const fromText = document.querySelector(".from-text"),
   toText = document.querySelector(".to-text"),
   exchageIcon = document.querySelector(".exchange"),
   selectTag = document.querySelectorAll("select");
-(translateBtn = document.querySelector("button")),
   selectTag.forEach((tag, id) => {
     for (let country_code in countries) {
       let selected =
-        id == 0
-          ? country_code == "id-ID"
+        id == 0 
+          ? country_code == "id"
             ? "selected"
             : ""
-          : country_code == "en-GB"
+          : country_code == "en"
           ? "selected"
           : "";
       let option = `<option ${selected} value="${country_code}">${countries[country_code]}</option>`;
@@ -57,25 +56,6 @@ const translateHook = async () => {
     throw error;
   }
 };
-
-translateBtn.addEventListener("click", async () => {
-  const fromLang = selectTag[0].value;
-  const toLang = selectTag[1].value;
-  // console.log(fromLang, toLang);
-  const textTranslate = fromText.value;
-  // console.log(textTranslate);
-  try {
-    const response = await axios.post("/translate", {
-      q: textTranslate, // querry string
-      source_language: fromLang,
-      target_language: toLang,
-    });
-    toText.value = response.data.translated_text;
-  } catch (error) {
-    throw error;
-    s;
-  }
-});
 
 selectTag.addEventListener("change", async () => {
   try {
