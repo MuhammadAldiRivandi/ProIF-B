@@ -16,7 +16,7 @@ const fromText = document.querySelector(".from-text"),
       tag.insertAdjacentHTML("beforeend", option);
     }
   });
-
+ 
 exchageIcon.addEventListener("click", () => {
   let tempText = fromText.value,
     tempLang = selectTag[0].value;
