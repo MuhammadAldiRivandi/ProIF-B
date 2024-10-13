@@ -22,15 +22,14 @@ app.post('/translate', async (req, res) => {
 
   try {
     const response = await axios.post(`https://translation.googleapis.com/language/translate/v2?key=${process.env.GOOGLE_TRANSLATE_API_KEY}`, {
-      q: q, // teks yang mau ditranslate
+      q: q,
       source: source_language,
       target: target_language
     });
-    // mengirim respon hasil terjemahan
-    res.json({ translated_text: response.data.data.translations[0].translatedText }); // data yang dikembalikan dari api ada dua kali ("translatedText": "halo", "detectedSourceLanguage": "id")
+    res.json({ translated_text: response.data.data.translations[0].translatedText });
     
   } catch (error) {
-    res.status(500).send('Translation error');
+    throw error;
   }
 });
 

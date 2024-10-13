@@ -36,7 +36,6 @@ fromText.addEventListener("keyup", () => {
   }
 });
 
-console.log(fromText);
 
 const translateHook = async () => {
   const fromLang = selectTag[0].value;
@@ -49,8 +48,6 @@ const translateHook = async () => {
       source_language: fromLang,
       target_language: toLang,
     });
-    // console.log(response);
-    console.log(fromLang, toLang);
     toText.value = response.data.translated_text;
   } catch (error) {
     throw error;
